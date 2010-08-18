@@ -400,4 +400,20 @@
         <item>silent</item>
         <item>notsilent</item>
     </string-array>
+
+    <string-array name="entryvalues_animations">
+        <item>0.0</item>
+        <item>0.5</item>
+        <item>1.0</item>
+        <item>1.5</item>
+        <item>2.0</item>
+    </string-array>
+
+    <string-array name="entries_animations">
+        <item>Off</item>
+        <item>Fast</item>
+        <item>Normal</item>
+        <item>Slow</item>
+        <item>Very Slow</item>
+    </string-array>
 </resources>

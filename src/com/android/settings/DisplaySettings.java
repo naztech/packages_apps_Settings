@@ -20,6 +20,9 @@ import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
 
 import java.util.ArrayList;
 
+import java.util.List;
+
+import android.content.SharedPreferences;
 import android.app.admin.DevicePolicyManager;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -35,6 +38,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.IWindowManager;
 
+
 public class DisplaySettings extends PreferenceActivity implements
         Preference.OnPreferenceChangeListener {
     private static final String TAG = "DisplaySettings";
@@ -46,10 +50,16 @@ public class DisplaySettings extends PreferenceActivity implements
     private static final String KEY_ANIMATIONS = "animations";
     private static final String KEY_ACCELEROMETER = "accelerometer";
     private static final String H_ICON_PREF = "h_icon";
+    private static final String WINDOW_ANIMATIONS_PREF = "window_animations";
+    private static final String TRANSITION_ANIMATIONS_PREF = "transition_animations";
+    private static final String FANCY_IME_ANIMATIONS_PREF = "fancy_ime_animations";
 
     private ListPreference mAnimations;
     private CheckBoxPreference mAccelerometer;
     private CheckBoxPreference mHIconPref;
+    private ListPreference mWindowAnimationsPref;
+    private ListPreference mTransitionAnimationsPref;
+    private CheckBoxPreference mFancyImeAnimationsPref;
     private float[] mAnimationScales;
 
     private IWindowManager mWindowManager;
@@ -77,6 +87,13 @@ public class DisplaySettings extends PreferenceActivity implements
 	mHIconPref = (CheckBoxPreference) findPreference(H_ICON_PREF);
 	mHIconPref.setOnPreferenceChangeListener(this);
 	mHIconPref.setChecked(Settings.System.getInt(getContentResolver(), Settings.System.SHOW_H_ICON, 0) == 1);
+
+        mWindowAnimationsPref = (ListPreference) findPreference(WINDOW_ANIMATIONS_PREF);
+        mWindowAnimationsPref.setOnPreferenceChangeListener(this);
+
+        mTransitionAnimationsPref = (ListPreference) findPreference(TRANSITION_ANIMATIONS_PREF);
+        mTransitionAnimationsPref.setOnPreferenceChangeListener(this);
+        mFancyImeAnimationsPref = (CheckBoxPreference) findPreference(FANCY_IME_ANIMATIONS_PREF);
     }
 
     private void disableUnusableTimeouts(ListPreference screenTimeoutPreference) {
@@ -114,10 +131,19 @@ public class DisplaySettings extends PreferenceActivity implements
         screenTimeoutPreference.setEnabled(revisedEntries.size() > 0);
     }
 
+    public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
+        if (FANCY_IME_ANIMATIONS_PREF.equals(key)) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.FANCY_IME_ANIMATIONS,
+                    mFancyImeAnimationsPref.isChecked() ? 1 : 0);
+        } 
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-
+        readAnimationPreference(0, mWindowAnimationsPref);
+        readAnimationPreference(1, mTransitionAnimationsPref);
         updateState(true);
     }
 
@@ -165,6 +191,38 @@ public class DisplaySettings extends PreferenceActivity implements
         }
     }
 
+     
+    int floatToIndex(float val, int resid) {
+        String[] indices = getResources().getStringArray(resid);
+        float lastVal = Float.parseFloat(indices[0]);
+        for (int i=1; i<indices.length; i++) {
+            float thisVal = Float.parseFloat(indices[i]);
+            if (val < (lastVal + (thisVal-lastVal)*.5f)) {
+                return i-1;
+            }
+            lastVal = thisVal;
+        }
+        return indices.length-1;
+    }
+
+    public void readAnimationPreference(int which, ListPreference pref) {
+        try {
+            float scale = mWindowManager.getAnimationScale(which);
+            pref.setValueIndex(floatToIndex(scale,
+                    R.array.entryvalues_animations));
+        } catch (RemoteException e) {
+        }
+    }
+
+    public void writeAnimationPreference(int which, Object objValue) {
+        try {
+            float val = Float.parseFloat(objValue.toString());
+            mWindowManager.setAnimationScale(which, val);
+        } catch (NumberFormatException e) {
+        } catch (RemoteException e) {
+        }
+    }
+
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mAccelerometer) {
@@ -173,6 +231,12 @@ public class DisplaySettings extends PreferenceActivity implements
                     mAccelerometer.isChecked() ? 1 : 0);
         } 
         return true;
+    }
+
+    private void updateToggles() {
+        mFancyImeAnimationsPref.setChecked(Settings.System.getInt(
+                getContentResolver(), 
+                Settings.System.FANCY_IME_ANIMATIONS, 0) != 0);
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -207,6 +271,12 @@ public class DisplaySettings extends PreferenceActivity implements
 	if (preference == mHIconPref) {
 	    Settings.System.putInt(getContentResolver(), 
                     Settings.System.SHOW_H_ICON, mHIconPref.isChecked() ? 0 : 1);
+        }
+        if (preference == mWindowAnimationsPref) {
+            writeAnimationPreference(0, objValue);
+        }
+        if (preference == mTransitionAnimationsPref) {
+            writeAnimationPreference(1, objValue);
         }
         return true;
     }

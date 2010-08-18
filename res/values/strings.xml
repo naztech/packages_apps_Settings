@@ -1147,6 +1147,17 @@
     <string name="h_icon_title">3G+H icon</string>
     <string name="h_icon_on"> H icon is displayed</string>
     <string name="h_icon_off"> Only 3G icon is displayed</string>
+    <string name="title_window_animations">Window animations</string>
+    <string name="summary_window_animations">Speed of animations in individual windows</string>
+    <string name="dialog_title_window_animations">Select window speed</string>
+    <string name="title_transition_animations">Transition animations</string>
+    <string name="summary_transition_animations">Speed of animations moving between screens</string>
+    <string name="dialog_title_transition_animations">Select transition speed</string>
+    <string name="title_fancy_ime_animations">Fancy input animations</string>
+    <string name="summary_on_fancy_ime_animations">Use fancier animations for input method windows</string>
+    <string name="summary_off_fancy_ime_animations">Use normal animations for input method windows</string>
+    <string name="animations_settings_title">Animation Settings</string>
+
     <!-- Sound & display settings screen, setting option name to change whether the screen adjusts automatically based on lighting conditions -->
     <string name="automatic_brightness">Automatic brightness</string>
 
