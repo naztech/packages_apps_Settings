@@ -56,8 +56,6 @@ public class SoundSettings extends PreferenceActivity implements
     private static final String KEY_SOUND_SETTINGS = "sound_settings";
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
     private static final String KEY_LOCK_SOUNDS = "lock_sounds";
-    private static final String TRACKBALL_WAKE_PREF = "pref_trackball_wake";
-
 
     private static final String VALUE_VIBRATE_NEVER = "never";
     private static final String VALUE_VIBRATE_ALWAYS = "always";
@@ -79,7 +77,6 @@ public class SoundSettings extends PreferenceActivity implements
     private CheckBoxPreference mHapticFeedback;
     private CheckBoxPreference mNotificationPulse;
     private CheckBoxPreference mLockSounds;
-    private CheckBoxPreference mTrackballWakePref;
 
     private AudioManager mAudioManager;
 
@@ -99,8 +96,6 @@ public class SoundSettings extends PreferenceActivity implements
         super.onCreate(savedInstanceState);
         ContentResolver resolver = getContentResolver();
         int activePhoneType = TelephonyManager.getDefault().getPhoneType();
-
-        Boolean mCanEnableTrackball = true;
 
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
@@ -157,11 +152,6 @@ public class SoundSettings extends PreferenceActivity implements
             }
         }
 
-        /* Trackball Wake */
-        mTrackballWakePref = (CheckBoxPreference) findPreference(TRACKBALL_WAKE_PREF);
-        mTrackballWakePref.setEnabled(mCanEnableTrackball);
-        mTrackballWakePref.setChecked(Settings.System.getInt(getContentResolver(), 
-                Settings.System.TRACKBALL_WAKE_SCREEN, 0) == 1);
     }
 
     @Override
@@ -284,7 +274,6 @@ public class SoundSettings extends PreferenceActivity implements
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-      boolean value;
         if (preference == mSilent) {
             if (mSilent.isChecked()) {
                 boolean vibeInSilent = (1 == Settings.System.getInt(
@@ -320,15 +309,11 @@ public class SoundSettings extends PreferenceActivity implements
                     mLockSounds.isChecked() ? 1 : 0);
 
         } else if (preference == mNotificationPulse) {
-            value = mNotificationPulse.isChecked();
+            boolean value = mNotificationPulse.isChecked();
             Settings.System.putInt(getContentResolver(),
                     Settings.System.NOTIFICATION_LIGHT_PULSE, value ? 1 : 0);
-          
-        } else if (preference == mTrackballWakePref) {
-            value = mTrackballWakePref.isChecked();
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.TRACKBALL_WAKE_SCREEN, value ? 1 : 0);
-        } 
+        }
+
         return true;
     }
 

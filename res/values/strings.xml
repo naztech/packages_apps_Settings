@@ -1157,6 +1157,10 @@
     <string name="summary_on_fancy_ime_animations">Use fancier animations for input method windows</string>
     <string name="summary_off_fancy_ime_animations">Use normal animations for input method windows</string>
     <string name="animations_settings_title">Animation Settings</string>
+    <string name="rotation">Rotation Settings</string>
+    <string name="rotation_90">90 degrees</string>
+    <string name="rotation_180">180 degrees</string>
+    <string name="rotation_270">270 degrees</string>
 
     <!-- Sound & display settings screen, setting option name to change whether the screen adjusts automatically based on lighting conditions -->
     <string name="automatic_brightness">Automatic brightness</string>

@@ -29,10 +29,6 @@
             android:persistent="false"
             android:disableDependentsState="true" />
     
-    <CheckBoxPreference android:key="pref_trackball_wake"
-            android:title="@string/pref_trackball_wake_title" 
-            android:summary="@string/pref_trackball_wake_summary" />
-
     <ListPreference
             android:key="vibrate"
             android:title="@string/vibrate_title"
