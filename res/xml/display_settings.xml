@@ -28,6 +28,13 @@
             android:title="@string/accelerometer_title"/>
 
         <ListPreference
+            android:key="animations"
+            android:title="@string/animations_title"
+            android:persistent="false"
+            android:entries="@array/animations_entries"
+            android:entryValues="@array/animations_values" />
+
+        <ListPreference
                 android:key="screen_timeout"
                 android:title="@string/screen_timeout"
                 android:summary="@string/screen_timeout_summary"

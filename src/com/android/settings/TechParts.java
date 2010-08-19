@@ -46,7 +46,6 @@ public class TechParts extends PreferenceActivity implements
     private static final String H_ICON_PREF = "h_icon";
     private static final String WINDOW_ANIMATIONS_PREF = "window_animations";
     private static final String TRANSITION_ANIMATIONS_PREF = "transition_animations";
-    private static final String FANCY_IME_ANIMATIONS_PREF = "fancy_ime_animations";
     private static final String ROTATION_90_PREF = "rotation_90";
     private static final String ROTATION_180_PREF = "rotation_180";
     private static final String ROTATION_270_PREF = "rotation_270";
@@ -55,7 +54,6 @@ public class TechParts extends PreferenceActivity implements
     private CheckBoxPreference mHIconPref;
     private ListPreference mWindowAnimationsPref;
     private ListPreference mTransitionAnimationsPref;
-    private CheckBoxPreference mFancyImeAnimationsPref;
     private CheckBoxPreference mRotation90Pref;
     private CheckBoxPreference mRotation180Pref;
     private CheckBoxPreference mRotation270Pref;
@@ -83,7 +81,6 @@ public class TechParts extends PreferenceActivity implements
         mWindowAnimationsPref.setOnPreferenceChangeListener(this);
         mTransitionAnimationsPref = (ListPreference) findPreference(TRANSITION_ANIMATIONS_PREF);
         mTransitionAnimationsPref.setOnPreferenceChangeListener(this);
-        mFancyImeAnimationsPref = (CheckBoxPreference) findPreference(FANCY_IME_ANIMATIONS_PREF);
 
         /* Rotation */
 	mRotation90Pref = (CheckBoxPreference) findPreference(ROTATION_90_PREF);
@@ -104,21 +101,11 @@ public class TechParts extends PreferenceActivity implements
                 Settings.System.TRACKBALL_WAKE_SCREEN, 0) == 1);
     }
 
-   
-    public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
-        if (FANCY_IME_ANIMATIONS_PREF.equals(key)) {
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.FANCY_IME_ANIMATIONS,
-                    mFancyImeAnimationsPref.isChecked() ? 1 : 0);
-        } 
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
         readAnimationPreference(0, mWindowAnimationsPref);
         readAnimationPreference(1, mTransitionAnimationsPref);
-        updateToggles();
     }
 
     int floatToIndex(float val, int resid) {
@@ -163,11 +150,6 @@ public class TechParts extends PreferenceActivity implements
         return true;
     }
 
-    private void updateToggles() {
-        mFancyImeAnimationsPref.setChecked(Settings.System.getInt(
-                getContentResolver(), 
-                Settings.System.FANCY_IME_ANIMATIONS, 0) != 0);
-    }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         final String key = preference.getKey();

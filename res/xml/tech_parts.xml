@@ -47,13 +47,6 @@
         android:title="@string/animations_settings_title">
 
         <ListPreference
-            android:key="animations"
-            android:title="@string/animations_title"
-            android:persistent="false"
-            android:entries="@array/animations_entries"
-            android:entryValues="@array/animations_values" />
-
-        <ListPreference
            android:key="window_animations"
            android:title="@string/title_window_animations"
            android:summary="@string/summary_window_animations"
@@ -68,12 +61,7 @@
            android:entries="@array/entries_animations"
            android:entryValues="@array/entryvalues_animations"
            android:dialogTitle="@string/dialog_title_transition_animations" />
-        
-        <CheckBoxPreference 
-            android:key="fancy_ime_animations" 
-            android:title="@string/title_fancy_ime_animations" 
-            android:summaryOn="@string/summary_on_fancy_ime_animations"
-            android:summaryOff="@string/summary_off_fancy_ime_animations"/>
+
     </PreferenceCategory>
 
 </PreferenceScreen>
