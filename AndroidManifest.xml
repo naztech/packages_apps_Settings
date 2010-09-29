@@ -795,8 +795,8 @@
 
 	<!-- Tech Parts -->
 
-	<activity android:name="TechParts"
-                android:label="Tech Parts"
+	<activity android:name="NAZTechSettings"
+                android:label="NAZTech Settings"
                 android:clearTaskOnLaunch="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

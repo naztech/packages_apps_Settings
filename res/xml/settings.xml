@@ -61,6 +61,17 @@
                 android:targetClass="com.android.settings.DisplaySettings" />
         </com.android.settings.IconPreferenceScreen>
 
+	<!-- NAZTech Settings -->
+
+	<com.android.settings.IconPreferenceScreen
+	    settings:icon="@drawable/ic_settings_tech_parts"
+	    android:title="NAZTech Settings">
+	    <intent
+		android:action="android.intent.action.MAIN"
+		android:targetPackage="com.android.settings"
+		android:targetClass="com.android.settings.NAZTechSettings" />
+	</com.android.settings.IconPreferenceScreen>
+
         <!-- Security & Location -->
 
         <com.android.settings.IconPreferenceScreen
@@ -188,18 +199,6 @@
                 android:targetPackage="com.android.settings"
                 android:targetClass="com.android.settings.DateTimeSettings" />
         </com.android.settings.IconPreferenceScreen>
-
-	<!-- Tech Parts -->
-
-	<com.android.settings.IconPreferenceScreen
-	    settings:icon="@drawable/ic_settings_tech_parts"
-	    android:title="Tech Parts">
-	    <intent
-		android:action="android.intent.action.MAIN"
-		android:targetPackage="com.android.settings"
-		android:targetClass="com.android.settings.TechParts" />
-	</com.android.settings.IconPreferenceScreen>
-
 
 
         <!-- About Device -->

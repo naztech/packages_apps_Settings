@@ -1010,8 +1010,11 @@
     <!-- Sound settings screen, setting option summary text when going into silent mode.  Media WILL NOT be silenced in silent mode, but alarms WILL be silenced. -->
     <string name="silent_mode_incl_alarm_summary">All sounds except media are silenced</string>
     
-   <string name="pref_trackball_wake_title">Trackball wake</string>
+    <string name="pref_trackball_wake_title">Trackball wake</string>
     <string name="pref_trackball_wake_summary">Pressing the trackball wakes the device</string>
+
+    <string name="pref_trackball_unlock_title">Trackball unlock</string>
+    <string name="pref_trackball_unlock_summary">Pressing the trackball unlocks the device</string>
     
     <!-- Sound settings screen, setting option name to pick ringtone (a list dialog comes up)-->
     <string name="ringtone_title">Phone ringtone</string>
@@ -2553,8 +2556,48 @@ found in the list of installed applications.</string>
     <!-- Name to assign to a Network Access Point that was saved without a name -->
     <string name="untitled_apn">Untitled</string>
 
+    <!-- Tech Parts Storages -->
+    <string name="data_storage_title">Data storage options</string>
+    <string name="data_storage_summary">Storage, App2SD, Dalvik-Cache &amp; more</string>
+    <string name="storage_sizes">Storage sizes</string>
+    <string name="refresh_storage">Refresh storage data</string>
+    <string name="a2sd_dalvik">App2SD</string>
+    <string name="a2sd_title">Original App2SD</string>
+    <string name="a2sd_summary_on">Original App2SD enabled</string>
+    <string name="a2sd_summary_off">Original App2SD disabled</string>
+    <string name="have_a_good_one">I have a good one</string>
+    <string name="move_sdcard">Moving to SDCard...</string>
+    <string name="low_class_sdcard">With low class SDCard, your phone might get really slow...</string>
+    <string name="warning">Warning</string>
+    <string name="warning_root">You don\'t seems to have ROOT permissions!</string>
+    <string name="warning_busybox">You don\'t seems to have busybox!</string>
+    <string name="move_phone">Restoring to phone...</string>
+    <string name="used_out_of">used out of</string>
+    <string name="download_install_error">Download or install has finished unexpectedly!</string>
+    <string name="error">Error</string>
+    <string name="rebooting">Rebooting...</string>
+    <string name="hardware">Hardware</string>
+
+    <string name="should_reboot">You will need to reboot for the changes to take effect.</string>
+
     <string name="sound_category_sound_title">General</string>
     <string name="sound_category_calls_title">Incoming calls</string>
     <string name="sound_category_notification_title">Notifications</string>
     <string name="sound_category_feedback_title">Feedback</string>
+
+    <string name="tweaks_title">Tweaks</string>
+    <string name="tweaks_summary">Advanced tweaks</string>
+    <string name="stock">Stock</string>
+    <string name="select_option">Select an option</string>
+    <string name="stock_a2sd_title">Stock Froyo App2SD</string>
+    <string name="stock_a2sd_summary"> Choose where to store apps</string>
+    <string name="activate_stock_a2sd">Activating stock app2sd...</string>
+    <string name="adb_wifi_title">ADB wireless mode</string>
+    <string name="adb_wifi_summary_on">ADB daemon started in wireless mode</string>
+    <string name="adb_wifi_summary_off">ADB daemon started in usb mode</string>
+    <string name="adb_wifi_on">Starting ADB in wireless mode...</string>
+    <string name="adb_wifi_off">Starting ADB in usb mode...</string>
+    <string name="instructions">Instructions</string>
+    <string name="adb_instructions_on">Your computer and device must be on the same network.\n\nYou also have to start adb in wireless mode from your computer, run:\n$ adb connect %ip%:%P%</string>
+    <string name="adb_instructions_off">You must plug into usb to get adb access from your computer.\n\nYou also have to restart adb in usb mode from your computer, run:\n$ adb usb</string>
 </resources>

@@ -28,7 +28,7 @@
             android:summary="@string/silent_mode_summary"
             android:persistent="false"
             android:disableDependentsState="true" />
-    
+
     <ListPreference
             android:key="vibrate"
             android:title="@string/vibrate_title"

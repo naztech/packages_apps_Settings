@@ -416,4 +416,16 @@
         <item>Slow</item>
         <item>Very Slow</item>
     </string-array>
+
+    <string-array name="entries_app2sd">
+        <item>Default (auto)</item>
+        <item>Internal (Phone)</item>
+        <item>External (SDCard/FAT)</item>
+    </string-array>
+
+    <string-array name="entryvalues_app2sd">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
 </resources>
